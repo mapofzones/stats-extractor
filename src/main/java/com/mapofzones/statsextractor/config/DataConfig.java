@@ -1,6 +1,7 @@
 package com.mapofzones.statsextractor.config;
 
 import com.mapofzones.statsextractor.config.props.CashflowProps;
+import com.mapofzones.statsextractor.config.props.TransfersProps;
 import com.mapofzones.statsextractor.data.Queries;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -23,6 +24,11 @@ public class DataConfig {
     @Bean
     public CashflowProps cashflowProps() {
         return new CashflowProps();
+    }
+
+    @Bean
+    public TransfersProps transferProps() {
+        return new TransfersProps();
     }
 
     // Core database config

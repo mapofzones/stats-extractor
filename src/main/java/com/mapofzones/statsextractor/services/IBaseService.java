@@ -5,7 +5,7 @@ import com.mapofzones.statsextractor.data.repository.IBaseRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface IService<R extends IBaseRepository<E>, E> {
+public interface IBaseService<R extends IBaseRepository<E>, E> {
 
     List<E> getDataList(LocalDateTime now);
     void deleteData();

@@ -3,12 +3,14 @@ package com.mapofzones.statsextractor.services;
 import com.mapofzones.statsextractor.data.repository.BaseRepository;
 import com.mapofzones.statsextractor.utils.time.Interval;
 import com.mapofzones.statsextractor.utils.time.IntervalCalculation;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseService<R extends BaseRepository<E>, E> implements IService<R, E> {
+@Slf4j
+public class BaseService<R extends BaseRepository<E>, E> implements IBaseService<R, E> {
 
     private final R repository;
     private final LocalDateTime start;
@@ -25,6 +27,7 @@ public class BaseService<R extends BaseRepository<E>, E> implements IService<R, 
         List<E> dataList = new ArrayList<>();
         List<Interval> intervalList = IntervalCalculation.getIntervalList(start, now, period);
 
+        log.info("Separated on {} intervals", intervalList.size());
         for (Interval interval : intervalList)
             dataList.addAll(repository.read(interval.getStart(), interval.getEnd()));
 

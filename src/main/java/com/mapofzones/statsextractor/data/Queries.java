@@ -10,16 +10,17 @@ import java.nio.charset.Charset;
 @Slf4j
 public class Queries {
 
-    @Value("classpath:queries/find_cashflow_chart.sql")
+    @Value("classpath:queries/cashflow/find_cashflow_chart.sql")
     private Resource cashflowSQL;
 
-    @Value("classpath:queries/insert_cashflow_chart.sql")
+    @Value("classpath:queries/cashflow/find_transfers_chart.sql")
+    private Resource transfersSQL;
+
+    @Value("classpath:queries/cashflow/insert_chart.sql")
     private Resource insertChart;
 
-    @Value("classpath:queries/delete_cashflow_chart.sql")
+    @Value("classpath:queries/cashflow/delete_chart.sql")
     private Resource deleteChart;
-
-
 
     public String getCashflowSQL() {
         return getContentAsString(cashflowSQL);
@@ -31,6 +32,10 @@ public class Queries {
 
     public String getDeleteChart() {
         return getContentAsString(deleteChart);
+    }
+
+    public String getTransfersSQL() {
+        return getContentAsString(transfersSQL);
     }
 
     private String getContentAsString(Resource resource) {
