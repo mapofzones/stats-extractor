@@ -1,0 +1,1 @@
+INSERT INTO chart(blockchain, network_id, chart_type, point_index, point_value) VALUES (?, ?, ?, ?, ?);
