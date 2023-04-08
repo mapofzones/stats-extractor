@@ -15,7 +15,7 @@ stats-extractor:
       period: ${DAU_PERIOD}
     transactions:
       start: ${TRANSACTIONS_START}
-      period: ${TRANSACTIONS}
+      period: ${TRANSACTIONS_PERIOD}
 
 
 spring:
