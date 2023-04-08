@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-public class Cashflow {
+public class Chart {
 
     private String blockchain;
     private String networkId;

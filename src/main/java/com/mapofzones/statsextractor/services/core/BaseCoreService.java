@@ -1,6 +1,6 @@
-package com.mapofzones.statsextractor.services;
+package com.mapofzones.statsextractor.services.core;
 
-import com.mapofzones.statsextractor.data.repository.BaseRepository;
+import com.mapofzones.statsextractor.data.repository.core.IBaseCoreRepository;
 import com.mapofzones.statsextractor.utils.time.Interval;
 import com.mapofzones.statsextractor.utils.time.IntervalCalculation;
 import lombok.extern.slf4j.Slf4j;
@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-public class BaseService<R extends BaseRepository<E>, E> implements IBaseService<R, E> {
+public class BaseCoreService<R extends IBaseCoreRepository<E>, E> implements IBaseCoreService<R, E> {
 
-    private final R repository;
+    private final R coreRepository;
     private final LocalDateTime start;
     private final Integer period;
 
-    public BaseService(R repository, LocalDateTime start, Integer period) {
-        this.repository = repository;
+    public BaseCoreService(R coreRepository, LocalDateTime start, Integer period) {
+        this.coreRepository = coreRepository;
         this.start = start;
         this.period = period;
     }
@@ -29,18 +29,8 @@ public class BaseService<R extends BaseRepository<E>, E> implements IBaseService
 
         log.info("Separated on {} intervals", intervalList.size());
         for (Interval interval : intervalList)
-            dataList.addAll(repository.read(interval.getStart(), interval.getEnd()));
+            dataList.addAll(coreRepository.read(interval.getStart(), interval.getEnd()));
 
         return dataList;
-    }
-
-    @Override
-    public void deleteData() {
-        repository.deleteAll();
-    }
-
-    @Override
-    public void writeData(List<E> dataList) {
-        repository.writeAll(dataList);
     }
 }

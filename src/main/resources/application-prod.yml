@@ -7,6 +7,16 @@ stats-extractor:
     transfers:
       start: ${TRANSFERS_START}
       period: ${TRANSFERS_PERIOD}
+    mau:
+      start: ${MAU_START}
+      period: ${MAU_PERIOD}
+    dau:
+      start: ${DAU_START}
+      period: ${DAU_PERIOD}
+    transactions:
+      start: ${TRANSACTIONS_START}
+      period: ${TRANSACTIONS}
+
 
 spring:
   datasource:

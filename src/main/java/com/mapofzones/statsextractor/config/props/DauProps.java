@@ -10,10 +10,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties(prefix = "stats-extractor.queries.cashflow")
-public class CashflowProps {
+@ConfigurationProperties(prefix = "stats-extractor.queries.dau")
+public class DauProps {
 
     LocalDateTime start;
     Integer period;
 
 }
+
