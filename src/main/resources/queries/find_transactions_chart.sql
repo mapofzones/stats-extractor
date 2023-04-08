@@ -5,7 +5,7 @@ with dataset as (
         sum(txs_cnt)::bigint as txs_cnt
     from
         total_tx_hourly_stats as stats
-    WHERE stats.hour >= ? and ?
+    WHERE stats.hour >= ? and stats.hour < ?
     group by
         stats.zone,
         DATE_TRUNC('day', stats.hour)
