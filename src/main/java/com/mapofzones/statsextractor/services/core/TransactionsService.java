@@ -4,8 +4,10 @@ import com.mapofzones.statsextractor.config.props.TransactionsProps;
 import com.mapofzones.statsextractor.data.domain.Chart;
 import com.mapofzones.statsextractor.data.repository.core.TransactionsRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(readOnly = true)
 public class TransactionsService extends BaseCoreService<TransactionsRepository, Chart> implements IBaseCoreService<TransactionsRepository, Chart> {
 
     public TransactionsService(TransactionsRepository transactionsRepository, TransactionsProps transactionsProps) {

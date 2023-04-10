@@ -6,15 +6,15 @@ import java.util.List;
 
 public class IntervalCalculation {
 
-    public static List<Interval> getIntervalList(LocalDateTime startDate, LocalDateTime now, int days) {
+    public static List<Interval> getIntervalList(LocalDateTime startDate, LocalDateTime now, int month) {
         List<Interval> intervals = new ArrayList<>();
 
         LocalDateTime start = startDate;
         LocalDateTime end = startDate;
 
-
         while (end.isBefore(now)) {
-            end = start.plusDays(days);
+
+            end = start.plusMonths(month).minusNanos(1);
 
             Interval interval = new Interval();
             interval.setStart(start);
@@ -23,23 +23,8 @@ public class IntervalCalculation {
             else interval.setEnd(now);
 
             intervals.add(interval);
-
-            start = end;
+            start = end.plusNanos(1);
         }
-
-//        do {
-//            end = end.isBefore(now) ? start.plusDays(days) : now;
-//
-//            Interval interval = new Interval();
-//            interval.setStart(start);
-//            interval.setEnd(end);
-//
-//            intervals.add(interval);
-//
-//            start = end;
-//
-//        } while (end.isBefore(now));
-
         return intervals;
     }
 }

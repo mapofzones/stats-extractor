@@ -2,7 +2,6 @@ package com.mapofzones.statsextractor.data.repository.api;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,13 +21,11 @@ public class BaseApiRepository<E> implements IBaseApiRepository<E> {
         this.deleteQuery = deleteQuery;
     }
 
-    @Transactional
     public void writeAll(List<E> dataList) {
         apiJdbcTemplate.batchUpdate(writeQuery, dataList, dataList.size(), preparedStatementSetter);
     }
 
-    @Transactional
     public void deleteAll() {
-        apiJdbcTemplate.execute(deleteQuery);
+        apiJdbcTemplate.update(deleteQuery);
     }
 }

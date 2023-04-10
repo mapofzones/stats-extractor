@@ -17,8 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Service
 @Slf4j
+@Service
 public class ExtractorFacade {
 
     IBaseApiService<ChartRepository, Chart> chartService;
@@ -52,7 +52,7 @@ public class ExtractorFacade {
 
         // find
         log.info("Start finding cashflow data");
-        List<Chart> chartList = cashflowService.getDataList(now);
+        List<Chart> cashflowList = cashflowService.getDataList(now);
         log.info("Finish finding cashflow data");
 
         log.info("Start finding transfers data");
@@ -69,16 +69,16 @@ public class ExtractorFacade {
 
         log.info("Start finding transactions data");
         List<Chart> transactionsList = transactionsService.getDataList(now);
-        log.info("Finish finding dau data");
+        log.info("Finish finding transactions data");
 
         // delete
         log.info("Start removing data");
         chartService.deleteData();
-        log.info("Finish finding data");
+        log.info("Finish removing data");
 
         // write
         log.info("Start writing cashflow data");
-        chartService.writeData(chartList);
+        chartService.writeData(cashflowList);
         log.info("Finish writing cashflow data");
 
         log.info("Start writing transfers data");
@@ -96,7 +96,6 @@ public class ExtractorFacade {
         log.info("Start writing transactions data");
         chartService.writeData(transactionsList);
         log.info("Finish writing transactions data");
-
 
     }
 }
