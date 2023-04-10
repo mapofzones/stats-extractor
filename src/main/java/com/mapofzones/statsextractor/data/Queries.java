@@ -19,7 +19,7 @@ public class Queries {
     @Value("classpath:queries/find_mau_chart.sql")
     private Resource mauSQL;
 
-    @Value("classpath:queries/find_dau_chart.sql.sql")
+    @Value("classpath:queries/find_dau_chart.sql")
     private Resource dauSQL;
 
     @Value("classpath:queries/find_transactions_chart.sql")
