@@ -77,8 +77,8 @@ with
 )
    , counters_dataset as (
     select
-        coalesce(cf_out.network_id, cf_in.network_id) as network_id,
-        coalesce(cf_out.hour, cf_in.hour) as day,
+        coalesce(cf_out.network_id, cf_in.network_id, out.network_id, out_internal.network_id) as network_id,
+        coalesce(cf_out.hour, cf_in.hour, out.hour, out_internal.hour) as day,
 
         coalesce(cf_out.ibc_cashflow_out, 0) as ibc_cashflow_in_external,
         coalesce(cf_in.ibc_cashflow_in, 0) as ibc_cashflow_in,
